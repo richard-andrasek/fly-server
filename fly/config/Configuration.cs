@@ -19,6 +19,7 @@ namespace fly.config
                 { ".html", new ContentType("text/html", "ascii") },
                 { ".htm", new ContentType("text/html", "ascii")},
                 { ".js", new ContentType("application/javascript", "ascii")},
+                { ".tsx", new ContentType("application/javascript", "ascii")},
                 { ".jpg", new ContentType("image/jpeg", "base64") },
                 { ".jpeg", new ContentType("image/jpeg", "base64") },
                 { ".png", new ContentType("image/png", "base64") },
@@ -31,6 +32,8 @@ namespace fly.config
                 { ".tif", new ContentType("image/tiff", "base64") },
                 { ".tiff", new ContentType("image/tiff", "base64") }
             };
+            _DefaultHost = "127.0.0.1";
+            _DefaultPort = 80;
         }
 
         static private Configuration Instance
@@ -50,11 +53,21 @@ namespace fly.config
                 return _instance;
             }
         }
+        /*
+         * Private (Singleton) Member Methods
+         */
         private string _FlyVersion { get; set; }
         private Dictionary<string, ContentType> _FileExtensionToContentTypeMap { get; set; }
-
+        private string _DefaultHost { get; set; }
+        private int _DefaultPort { get; set; }
+        
+        /*
+         * Public (Static) Member Methods
+         */
         static public string ServerVersion { get {  return Instance._FlyVersion; } }
         static public Dictionary<string, ContentType> FileExtensionToContentTypeMap {  get { return Instance._FileExtensionToContentTypeMap; } }
+        static public string DefaultHost { get { return Instance._DefaultHost; } }
+        static public int DefaultPort { get { return Instance._DefaultPort; } }
 
         static public string GetConfiguration(string keyName)
         {

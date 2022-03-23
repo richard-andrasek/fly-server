@@ -26,13 +26,6 @@ namespace fly.tcp
         {
             Lumberjack logger = new Lumberjack("TcpServer");
 
-            // Deep thoughts...
-            // -------------------------------------
-            // Currently, this is a blocking call...
-            // I'm not sure how I feel about this
-            // IE: What else would the caller do while this TCP server is running?
-            // -------------------------------------
-
             portListener.Start();
 
             try

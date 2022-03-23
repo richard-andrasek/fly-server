@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading;
 
 namespace fly.http
@@ -16,6 +15,7 @@ namespace fly.http
          */
         IPAddress http_address;
         int http_port;
+
         public HttpServer(string address, int port)
         {
             http_address = IPAddress.Parse(address);

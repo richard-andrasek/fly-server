@@ -164,6 +164,7 @@ namespace fly.filesystem
 
         private static string FileInfoToEncoding(FileInfo fileInfo)
         {
+            // TODO:  This is not longer used!!
             string ext = fileInfo.Extension.ToLower();
 
             if (Configuration.FileExtensionToContentTypeMap.ContainsKey(ext))

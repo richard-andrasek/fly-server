@@ -41,7 +41,7 @@ namespace fly.tcp
             {
                 int bytesRead = stream.Read(bytes, 0, MAX_PACKET);
 
-                // TODO: Need to fix this limitation this because... POST can easily exceed MAX_PACKET (let alone GET headers)
+                // TODO: Need to fix this limitation... probably?
                 if (bytesRead == MAX_PACKET)
                 {
                     logger.Error("Received more than " + MAX_PACKET.ToString() + " bytes.  Message truncated.");

@@ -42,8 +42,8 @@ namespace fly.log
             // Level
             // Message
             string formattedOutput = DateTime.Now.ToString("HH:mm:ss.ffffff") +
-                " [" + Thread.CurrentThread.ManagedThreadId.ToString() + "] " +
-                " [" + _caller + "] " +
+                " [" + Thread.CurrentThread.ManagedThreadId.ToString() + "]" +
+                " [" + _caller + "]" +
                 " [" + level.ToString() + "]: " +
                 output;
             WriteToLog(formattedOutput);

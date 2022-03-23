@@ -31,7 +31,6 @@ namespace fly.http
                 return error_output.ToResponseStream();
             }
 
-
             HttpResponse response;
 
             if(req.Method == "GET")
@@ -43,7 +42,7 @@ namespace fly.http
             else
             {
                 HttpErrorProcessor errorProcessor = new HttpErrorProcessor();
-                response = errorProcessor.Serve(new NotImplemented("Invalid HTTP Method"));
+                response = errorProcessor.Serve(new NotImplemented("Unsupported HTTP Method"));
             }
 
             return response.ToResponseStream();

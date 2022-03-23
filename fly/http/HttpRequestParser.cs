@@ -43,6 +43,7 @@ namespace fly.http
 
         static private void ParseRequestLine(HttpRequest newRequest, string req)
         {
+            // GET / HTTP/1.1
             string[] items = req.Split(' ');
 
             string meth = items[0];

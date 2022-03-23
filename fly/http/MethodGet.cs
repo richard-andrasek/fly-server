@@ -25,10 +25,6 @@ namespace fly.http
             response.BinaryBody = file.FileContent;
 
             response.Headers["Content-Type"] = file.ContentType;
-            //if(file.ContentEncoding != "ascii")
-            //{
-            //    response.Headers["Content-Encoding"] = file.ContentEncoding;
-            //}
             response.Headers["Content-Length"] = response.BinaryBody.Length.ToString();
 
             return response;
