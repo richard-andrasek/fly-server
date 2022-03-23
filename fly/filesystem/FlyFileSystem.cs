@@ -102,6 +102,9 @@ namespace fly.filesystem
             // See: https://www.w3.org/Protocols/HTTP/1.1/draft-ietf-http-v11-spec-01.html#URI
             // ------------------------------------------
 
+            //  TODO:  test this...
+            //          http://../../../
+
             string full_url;
             if (uri.StartsWith("http"))
             {
