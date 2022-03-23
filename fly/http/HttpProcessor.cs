@@ -10,8 +10,8 @@ namespace fly.http
     {
         public HttpProcessor() 
         {
-            // Milestone 1: Parse request, send to appropriate command (Get/put/etc)
-            // Milestone 2: Headers (CORS)
+            // Milestone 1: Parse request, send to appropriate command (done)
+            // Milestone 2: Headers (CORS?)
         }
 
         public byte[] Serve(string request)

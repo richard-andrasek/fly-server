@@ -20,6 +20,7 @@ namespace fly.tcp
             // TODO: Milestones
             // Milestone 1: Threaded TCP listener (done)
             // Milestone 2: Create a thread pool to reduce threading time, improve stability
+            // Milestone 3: Streaming content (MP4, MP3, etc)
         }
 
         public void RunServer()

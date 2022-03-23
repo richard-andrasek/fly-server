@@ -14,10 +14,8 @@ namespace fly.log
             _caller = caller;
             // TODO: Milestones
             // Milestone 1: Write to the console (done)
-            // Milestone 2: Add custom parameters that pre-pend to the log message
-            //              e.g.  <time> <thread> <param1 val> <param2 val> <message>
-            // Milestone 3: Write to a log file
-            // Milestone 4: Create a static thread/thread pool and send the Write requests to the thread to unblock the caller
+            // Milestone 2: Write to a log file
+            // Milestone 3: Create a static thread/thread pool and send the Write requests to the thread to unblock the caller
         }
 
         public void Log(string output)

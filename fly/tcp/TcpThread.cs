@@ -18,7 +18,7 @@ namespace fly.tcp
             thread = new Thread(new ParameterizedThreadStart(TcpThread.ProcessRequest));
             // TODO: Current limitations
             // * This only supports ASCII
-            // * This only supports requests up to MAX_PACKET
+            // * This only supports requests up to MAX_PACKET (should not be a problem)
         }
 
         public void Start(TcpClient client)

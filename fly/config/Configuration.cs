@@ -30,7 +30,9 @@ namespace fly.config
                 { ".ico", new ContentType("image/x-icon", "base64") },
                 { ".cur", new ContentType("image/x-icon", "base64") },
                 { ".tif", new ContentType("image/tiff", "base64") },
-                { ".tiff", new ContentType("image/tiff", "base64") }
+                { ".tiff", new ContentType("image/tiff", "base64") },
+                { ".pdf", new ContentType("application/pdf", "base64") },
+                { ".txt", new ContentType("text/plain", "ascii") }
             };
             _DefaultHost = "127.0.0.1";
             _DefaultPort = 80;

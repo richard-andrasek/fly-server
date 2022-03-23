@@ -14,7 +14,7 @@ namespace fly.http_errors
             // Milestone 1:  Convert error into http output (Done)
             // Milestone 2:  Improve default HTML to serve along with the error
             // Milestone 3:  Add Actual Headers
-            // Milestone 4:  Allow for override of default HTML with a 404.html page
+            // Milestone 4:  Allow for override of default HTML with a 404.html page (see FlyFileSystem.cs)
         }
 
 

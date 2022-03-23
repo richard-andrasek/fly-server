@@ -19,9 +19,10 @@ namespace fly.filesystem
         {
             // TODO: Milestones
             // Milestone 1: Read a file... that's it.  Just read it.  (done)
-            // Milestone 2: Process all types of files
+            // Milestone 2: Process all types of files (done)
             // Milestone 3: Allow for default file (404.html)
             // Milestone 4: Caching (disabled by config, max size, etc.)
+            // Milestone 5: File Streaming (mp4, mp3, etc.)
         }
 
         private string _root = null;
