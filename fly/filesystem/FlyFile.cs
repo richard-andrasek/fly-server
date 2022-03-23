@@ -6,16 +6,14 @@ namespace fly.filesystem
 {
     class FlyFile
     {
-        public FlyFile(string absolutePath, string contentType, byte[] filecontent, string encoding)
+        public FlyFile(string absolutePath, string contentType, byte[] filecontent)
         {
             FileContent = filecontent;
             AbsolutePath = absolutePath;
-            ContentEncoding = encoding;
             ContentType = contentType;
         }
         public string ContentType { get; set; }
         public string AbsolutePath { get; set; }
-        public string ContentEncoding { get; set; }
         public byte[] FileContent { get; set; }
     }
 }

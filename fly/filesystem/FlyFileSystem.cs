@@ -78,14 +78,13 @@ namespace fly.filesystem
 
             // Get the Content Type info
             string contentType = FileToContentType(finfo);
-            string encoding = FileInfoToEncoding(finfo);
 
             // Get the Contents of the file
             byte[] fileBytes = File.ReadAllBytes(fullFilePath);
 
             
             // Create the FlyFile
-            outFile = new FlyFile(absolutePath, contentType, fileBytes, encoding);
+            outFile = new FlyFile(absolutePath, contentType, fileBytes);
 
             return true;
         }
@@ -152,35 +151,12 @@ namespace fly.filesystem
                 return type.Name;
             }
 
-            // MIME Types
-            // https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
-
             // Did not find file type... Log it and default
             Lumberjack logger = new Lumberjack("FlyFileSystem");
             logger.Error("Returning default content type for unknown file extension: [" + ext + "]");
 
+            // TODO: Once all other files are in place, this REALLY needs to be set to "octet"
             return "text/plain";
-        }
-
-        private static string FileInfoToEncoding(FileInfo fileInfo)
-        {
-            // TODO:  This is not longer used!!
-            string ext = fileInfo.Extension.ToLower();
-
-            if (Configuration.FileExtensionToContentTypeMap.ContainsKey(ext))
-            {
-                ContentType type = Configuration.FileExtensionToContentTypeMap[ext];
-                return type.Encoding;
-            }
-
-            // MIME Types
-            // https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
-
-            // Did not find file type... Log it and default
-            Lumberjack logger = new Lumberjack("FlyFileSystem");
-            logger.Error("Returning default encoding for unknown file extension: [" + ext + "]");
-
-            return "ascii";
         }
     }
 }
