@@ -20,8 +20,8 @@ namespace fly.filesystem
             // TODO: Milestones
             // Milestone 1: Read a file... that's it.  Just read it.  (done)
             // Milestone 2: Process all types of files (done)
-            // Milestone 3: Allow for default file (404.html)
-            // Milestone 4: Caching (disabled by config, max size, etc.)
+            // Milestone 3: Caching (disabled by config, max size, etc.) (done)
+            // Milestone 4: Allow for default file (404.html)
             // Milestone 5: File Streaming (mp4, mp3, etc.)
         }
 
@@ -68,6 +68,11 @@ namespace fly.filesystem
                 return false;
             }
 
+            if(FlyFileCache.TryRetrieveFile(absolutePath, out outFile))
+            {
+                return true;
+            }
+
             // Find the file on disk
             string fullFilePath = Instance.RootDirectory() + absolutePath;
             FileInfo finfo = new FileInfo(fullFilePath);
@@ -83,9 +88,10 @@ namespace fly.filesystem
             // Get the Contents of the file
             byte[] fileBytes = File.ReadAllBytes(fullFilePath);
 
-            
             // Create the FlyFile
             outFile = new FlyFile(absolutePath, contentType, fileBytes);
+
+            FlyFileCache.CacheFile(outFile);
 
             return true;
         }
@@ -96,14 +102,11 @@ namespace fly.filesystem
         {
             returnError = null;
             absolutePath = null;
-            // ------------------------------------------
-            // This is the most fragile part of the server
-            // I believe that there are MANY edge cases that are not covered
-            // See: https://www.w3.org/Protocols/HTTP/1.1/draft-ietf-http-v11-spec-01.html#URI
-            // ------------------------------------------
 
-            //  TODO:  test this...
-            //          http://../../../
+            // This is the most fragile part of the server
+            // There are edge cases that are not covered (such as receiving a network address)
+            // These will end up failing with a 404 (file not found), but should really be a 400 (bad request)
+            // See: https://www.w3.org/Protocols/HTTP/1.1/draft-ietf-http-v11-spec-01.html#URI
 
             string full_url;
             if (uri.StartsWith("http"))

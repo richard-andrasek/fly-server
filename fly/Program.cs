@@ -12,7 +12,6 @@ using System.IO;
  * 
  * Temporary limitations (TODO):
  * - HTTP requests must be done in ASCII
- * - Maximum request size: 1400 bytes
  * 
  * Limitations:
  * - Only IPV4 support

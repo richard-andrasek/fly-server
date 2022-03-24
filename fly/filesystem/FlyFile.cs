@@ -11,9 +11,11 @@ namespace fly.filesystem
             FileContent = filecontent;
             AbsolutePath = absolutePath;
             ContentType = contentType;
+            FileSize = filecontent.Length;
         }
         public string ContentType { get; set; }
         public string AbsolutePath { get; set; }
         public byte[] FileContent { get; set; }
+        public int FileSize { get; set; }
     }
 }

@@ -47,13 +47,13 @@ namespace fly.tcp
 
             try
             {
+                logger.Log("Waiting for a connection");
                 while (true)
                 {
                     // Wait for a new request
                     // Create a new thread to process the request
-                    logger.Log("Waiting for a connection...");
                     TcpClient connection = portListener.AcceptTcpClient();
-                    logger.Log("Connection received from " + ((IPEndPoint)connection.Client.RemoteEndPoint).Address.ToString());
+                    logger.Log("Queing request from " + ((IPEndPoint)connection.Client.RemoteEndPoint).Address.ToString());
 
                     ConnectionQueue.Enqueue(connection);
                 }

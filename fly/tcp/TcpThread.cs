@@ -19,7 +19,6 @@ namespace fly.tcp
             thread = new Thread(RequestLoop);
             // TODO: Current limitations
             // * This only supports ASCII
-            // * This only supports requests up to MAX_PACKET (should not be a problem)
 
             logger = new Lumberjack("TcpThread");
         }
@@ -53,11 +52,16 @@ namespace fly.tcp
             string data = null;
             Byte[] bytes = new Byte[MAX_PACKET+1]; // +1 is probably not needed...
 
+            logger.Log("Processing request from ip: " + ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString());
             try
             {
                 int bytesRead = stream.Read(bytes, 0, MAX_PACKET);
 
-                // TODO: Need to fix this limitation... probably?
+                // Currently we have a limitation of 1400 bytes.
+                // This is not a problem because we only server GET requests. The bits that are actually important are
+                // in the first 15-20 bytes.  (Method, URL, HTTP Version).
+                // Also, any web requests coming in with > 1400 bytes in headers aren't relevant because the
+                // headers aren't needed for static files. 
                 if (bytesRead == MAX_PACKET)
                 {
                     logger.Error("Received more than " + MAX_PACKET.ToString() + " bytes.  Message truncated.");
@@ -65,7 +69,13 @@ namespace fly.tcp
 
                 // Convert the bytes to ASCII for the web request
                 data = Encoding.ASCII.GetString(bytes, 0, bytesRead);
-                logger.Log("Received " + bytesRead.ToString() + " bytes: [" + data + "]");
+
+                {
+                    int firstLineIndex = data.IndexOf('\n');
+                    if (firstLineIndex <= 0)
+                        firstLineIndex = bytesRead;
+                    logger.Log("Received " + bytesRead.ToString() + " bytes: [" + data.Substring(0, firstLineIndex - 1) + "]");
+                }
 
                 // Send the request to the HTTP processor
                 var http = new HttpProcessor();

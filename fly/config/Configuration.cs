@@ -15,6 +15,10 @@ namespace fly.config
             // Milestone 2: Load from file with defaults
 
             _FlyVersion = System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString();
+
+            // For a full list, see here:
+            // https://www.geeksforgeeks.org/http-headers-content-type/
+            // (Not all of those should be supported, though).
             _FileExtensionToContentTypeMap = new Dictionary<string, ContentType> {
                 { ".html", new ContentType("text/html", "ascii") },
                 { ".htm", new ContentType("text/html", "ascii")},
@@ -32,11 +36,13 @@ namespace fly.config
                 { ".tif", new ContentType("image/tiff", "base64") },
                 { ".tiff", new ContentType("image/tiff", "base64") },
                 { ".pdf", new ContentType("application/pdf", "base64") },
-                { ".txt", new ContentType("text/plain", "ascii") }
+                { ".txt", new ContentType("text/plain", "ascii") },
+                { ".css", new ContentType("text/css", "ascii") }
             };
             _DefaultHost = "127.0.0.1";
             _DefaultPort = 80;
             _NumberOfWorkerThreads = 16;
+            _MaxFileCacheSizeInBytes = 1073741824; // 1 GB
         }
 
         static private Configuration Instance
@@ -64,7 +70,8 @@ namespace fly.config
         private string _DefaultHost { get; set; }
         private int _DefaultPort { get; set; }
         private int _NumberOfWorkerThreads { get; set; }
-        
+        private long _MaxFileCacheSizeInBytes { get; set; }
+
         /*
          * Public (Static) Member Methods
          */
@@ -73,6 +80,7 @@ namespace fly.config
         static public string DefaultHost { get { return Instance._DefaultHost; } }
         static public int DefaultPort { get { return Instance._DefaultPort; } }
         static public int NumberOfWorkerThreads {  get { return Instance._NumberOfWorkerThreads;  } }
+        static public long MaxFileCacheSizeInBytes {  get { return Instance._MaxFileCacheSizeInBytes; } }
 
         static public string GetConfiguration(string keyName)
         {
