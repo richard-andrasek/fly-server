@@ -13,24 +13,40 @@ namespace fly.tcp
     {
         readonly Thread thread;
         private const int MAX_PACKET = 1400;
+        private Lumberjack logger;
         public TcpThread()
         {
-            thread = new Thread(new ParameterizedThreadStart(TcpThread.ProcessRequest));
+            thread = new Thread(RequestLoop);
             // TODO: Current limitations
             // * This only supports ASCII
             // * This only supports requests up to MAX_PACKET (should not be a problem)
+
+            logger = new Lumberjack("TcpThread");
         }
 
-        public void Start(TcpClient client)
+        public void Start()
         {
-            thread.Start(client);
+            thread.Start();
         }
+
+
+        private void RequestLoop()
+        {
+            //((IPEndPoint)connection.Client.RemoteEndPoint).Address.ToString()
+            while (true)
+            {
+                if (TcpServer.ConnectionQueue.TryDequeue(out TcpClient client))
+                {
+                    ProcessClientRequest(client);
+                }
+                // TODO: Make this an event rather than a sleep loop.
+                Thread.Sleep(1);
+            }
+        }
+
         
-        private static void ProcessRequest(Object obj)
+        private void ProcessClientRequest(TcpClient client)
         {
-            Lumberjack logger = new Lumberjack("TcpThread");
-
-            TcpClient client = (TcpClient)obj;
             var stream = client.GetStream();
             string imei = String.Empty;
 

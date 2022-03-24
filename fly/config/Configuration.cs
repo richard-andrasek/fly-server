@@ -36,6 +36,7 @@ namespace fly.config
             };
             _DefaultHost = "127.0.0.1";
             _DefaultPort = 80;
+            _NumberOfWorkerThreads = 16;
         }
 
         static private Configuration Instance
@@ -62,6 +63,7 @@ namespace fly.config
         private Dictionary<string, ContentType> _FileExtensionToContentTypeMap { get; set; }
         private string _DefaultHost { get; set; }
         private int _DefaultPort { get; set; }
+        private int _NumberOfWorkerThreads { get; set; }
         
         /*
          * Public (Static) Member Methods
@@ -70,6 +72,7 @@ namespace fly.config
         static public Dictionary<string, ContentType> FileExtensionToContentTypeMap {  get { return Instance._FileExtensionToContentTypeMap; } }
         static public string DefaultHost { get { return Instance._DefaultHost; } }
         static public int DefaultPort { get { return Instance._DefaultPort; } }
+        static public int NumberOfWorkerThreads {  get { return Instance._NumberOfWorkerThreads;  } }
 
         static public string GetConfiguration(string keyName)
         {
