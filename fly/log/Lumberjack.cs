@@ -18,9 +18,6 @@ namespace fly.log
         public Lumberjack(string caller)
         {
             _caller = caller;
-            // TODO: Milestones
-            // Milestone 1: Write to the console (done)
-            // Milestone 2: Create a static thread/thread pool and send the Write requests to the thread to unblock the caller (done)
 
             if(thread == null)
             {

@@ -11,7 +11,7 @@ using System.IO;
  * This is a simple, ultra-lightweight http server to serve static files only
  * 
  * Temporary limitations (TODO):
- * - HTTP requests must be done in ASCII
+ * - HTTP requests have not been tested with unicode filenames
  * 
  * Limitations:
  * - Only IPV4 support

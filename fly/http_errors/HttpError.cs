@@ -16,6 +16,9 @@ namespace fly.http_errors
         }
     }
     /*
+     *  Full List of Status Codes from W3 standard:
+     *  Most of these are not useful for our purposes.
+     *  
      *        Status-Code    = "100"   ; Continue
                       | "101"   ; Switching Protocols
                       | "200"   ; OK

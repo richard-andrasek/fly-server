@@ -10,6 +10,7 @@ namespace fly.http
         public HttpResponse()
         {
             this.ResponseCode = 200;
+            this.ResponseCodeText = "OK";
             this.Headers = new Dictionary<string, string>();
             this.Headers["Server"] = "Fly " + Configuration.ServerVersion;
         }
@@ -69,5 +70,10 @@ namespace fly.http
 
             return outData;
         }
+    }
+
+    class OKResponse : HttpResponse
+    {
+        // The default for HttpResponse is "OK"...so this is just a wrapper
     }
 }

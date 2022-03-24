@@ -10,7 +10,7 @@ namespace fly.http
     {
         public HttpResponse Serve(HttpRequest req)
         {
-            HttpResponse response = new HttpResponse();
+            HttpResponse response = new OKResponse();
 
             HttpError httpError;
             FlyFile file;
@@ -20,8 +20,6 @@ namespace fly.http
                 return proc.Serve(httpError);
             }
 
-            response.ResponseCode = 200;
-            response.ResponseCodeText = "OK";
             response.BinaryBody = file.FileContent;
 
             response.Headers["Content-Type"] = file.ContentType;

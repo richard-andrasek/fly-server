@@ -17,8 +17,9 @@ namespace fly.tcp
         public TcpThread()
         {
             thread = new Thread(RequestLoop);
+
             // TODO: Current limitations
-            // * This only supports ASCII
+            // * This has not been tested on unicode requests (unicode file names)
 
             logger = new Lumberjack("TcpThread");
         }
@@ -31,7 +32,6 @@ namespace fly.tcp
 
         private void RequestLoop()
         {
-            //((IPEndPoint)connection.Client.RemoteEndPoint).Address.ToString()
             while (true)
             {
                 if (TcpServer.ConnectionQueue.TryDequeue(out TcpClient client))
